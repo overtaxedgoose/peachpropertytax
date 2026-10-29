@@ -46,7 +46,7 @@ Email: these records do not affect mail. Keep or add MX records for hello@peachp
 
 ## Form submissions
 
-The free-review form posts to Formspree. Create a free form at formspree.io, set its notification address to hello@peachpropertytax.com, and replace `YOUR_FORM_ID` in index.html with the ID Formspree gives you. Any other form endpoint works the same way by changing the `action` URL.
+The free-review form posts straight to a Google Form owned by the Jajeh Group Google account (published form: https://docs.google.com/forms/d/e/1FAIpQLSd4EeCjIpzTzG01UMTmD3GytNEbWbRJPGAK2iVNdnaNoaYWnw/viewform). Each field in index.html is named after the matching question's `entry.` ID, and a small script submits in the background and swaps in a thank-you message. An Apps Script project attached to the form, "Peach Property Tax website form", runs on every submission and emails the response to the address set in its `NOTIFY_TO` variable, with reply-to set to the submitter. To change where responses go, edit that variable in the script. If a question is ever added or renamed in the form, update the `entry.` names in index.html to match (the IDs are visible in the form's pre-filled link).
 
 ## Local preview
 

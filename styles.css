@@ -152,6 +152,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .review-form textarea { resize: vertical; }
 .review-form .btn { grid-column: 1 / -1; justify-self: start; }
 .review-form .fine { grid-column: 1 / -1; font-size: .85rem; color: var(--ink-soft); margin: 0; }
+.review-done { background: #fff; color: var(--ink); padding: 1.5rem; border-radius: 4px; }
+.review-done h3 { font-family: var(--display); font-size: 1.35rem; margin: 0 0 .5rem; }
+.review-done p { color: var(--ink-soft); margin: 0; }
+.review-done a { color: var(--orange); }
 
 /* faq */
 .faq { padding: clamp(3rem, 7vw, 5.5rem) var(--gutter); max-width: 48rem; }

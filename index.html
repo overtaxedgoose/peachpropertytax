@@ -108,22 +108,22 @@
     <p>Tell us where the parcel is. We'll pull the county's record, run the comparison, and send you a short memo. No obligation, and we say no when an appeal isn't worth your time.</p>
     <p class="contact">Prefer to talk? <a href="mailto:hello@peachpropertytax.com">hello@peachpropertytax.com</a></p>
   </div>
-  <form class="review-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <label>Your name <input name="name" type="text" autocomplete="name" required></label>
-    <label>Email <input name="email" type="email" autocomplete="email" required></label>
-    <label>Property address or parcel ID <input name="parcel" type="text" required></label>
+  <form class="review-form" action="https://docs.google.com/forms/d/e/1FAIpQLSd4EeCjIpzTzG01UMTmD3GytNEbWbRJPGAK2iVNdnaNoaYWnw/formResponse" method="POST">
+    <label>Your name <input name="entry.759031593" type="text" autocomplete="name" required></label>
+    <label>Email <input name="entry.1476513969" type="email" autocomplete="email" required></label>
+    <label>Property address or parcel ID <input name="entry.1258971545" type="text" required></label>
     <label>County
-      <select name="county" required>
+      <select name="entry.128116479" required>
         <option value="" disabled selected>Choose a county</option>
         <option>Barrow</option><option>Bartow</option><option>Bibb</option><option>Chatham</option><option>Cherokee</option><option>Clarke</option><option>Clayton</option><option>Cobb</option><option>Columbia</option><option>Coweta</option><option>DeKalb</option><option>Douglas</option><option>Fayette</option><option>Forsyth</option><option>Fulton</option><option>Gwinnett</option><option>Hall</option><option>Henry</option><option>Houston</option><option>Jackson</option><option>Lowndes</option><option>Muscogee</option><option>Newton</option><option>Paulding</option><option>Richmond</option><option>Rockdale</option><option>Walton</option><option>Another Georgia county</option>
       </select>
     </label>
     <label>Property type
-      <select name="type">
+      <select name="entry.396537001">
         <option>Office</option><option>Retail</option><option>Industrial or warehouse</option><option>Multifamily</option><option>Self-storage</option><option>Hospitality</option><option>Medical</option><option>Land or lots</option><option>Under construction</option><option>Other</option>
       </select>
     </label>
-    <label class="full">Anything we should know <textarea name="notes" rows="3" placeholder="Recent purchase price, vacancy, a notice you just received, several parcels..."></textarea></label>
+    <label class="full">Anything we should know <textarea name="entry.1347741047" rows="3" placeholder="Recent purchase price, vacancy, a notice you just received, several parcels..."></textarea></label>
     <button class="btn" type="submit">Request my free review</button>
     <p class="fine">We use what you send only to review your parcel. No mailing lists.</p>
   </form>
@@ -163,5 +163,30 @@
   <p class="foot-legal">Peach Property Tax is a property tax consulting practice, not a law firm, and does not provide legal advice. Results depend on the facts of each parcel and the decisions of county boards.</p>
 </footer>
 
+
+<script>
+(function () {
+  var form = document.querySelector('.review-form');
+  if (!form || !window.fetch || !window.URLSearchParams) return;
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending\u2026';
+    fetch(form.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) })
+      .then(function () {
+        var done = document.createElement('div');
+        done.className = 'review-done';
+        done.innerHTML = '<h3>Thanks. We have your request.</h3><p>We will pull the county record and reply within two business days. Prefer to talk in the meantime? <a href="mailto:hello@peachpropertytax.com">hello@peachpropertytax.com</a></p>';
+        form.replaceWith(done);
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Request my free review';
+        form.submit();
+      });
+  });
+})();
+</script>
 </body>
 </html>
