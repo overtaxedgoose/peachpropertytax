@@ -4,7 +4,9 @@ Static landing page for Peach Property Tax, hosted on GitHub Pages.
 
 ## Files
 
-- index.html, styles.css, favicon.svg: the page
+- index.html: the home page, where the visitor picks Georgia or Texas
+- georgia/index.html and texas/index.html: the state pages, each with its own review form
+- styles.css, favicon.svg, form.js: shared styles, icon, and the script that submits the review form in the background
 - CNAME: tells GitHub Pages to serve the site at peachpropertytax.com
 - .nojekyll: tells GitHub Pages to serve the files as-is
 
@@ -46,7 +48,7 @@ Email: these records do not affect mail. Keep or add MX records for hello@peachp
 
 ## Form submissions
 
-The free-review form posts straight to a Google Form owned by the Jajeh Group Google account (published form: https://docs.google.com/forms/d/e/1FAIpQLSd4EeCjIpzTzG01UMTmD3GytNEbWbRJPGAK2iVNdnaNoaYWnw/viewform). Each field in index.html is named after the matching question's `entry.` ID, and a small script submits in the background and swaps in a thank-you message. An Apps Script project attached to the form, "Peach Property Tax website form", runs on every submission and emails the response to the address set in its `NOTIFY_TO` variable, with reply-to set to the submitter. To change where responses go, edit that variable in the script. If a question is ever added or renamed in the form, update the `entry.` names in index.html to match (the IDs are visible in the form's pre-filled link).
+The free-review form posts straight to a Google Form owned by the Jajeh Group Google account (published form: https://docs.google.com/forms/d/e/1FAIpQLSd4EeCjIpzTzG01UMTmD3GytNEbWbRJPGAK2iVNdnaNoaYWnw/viewform). Each field in index.html is named after the matching question's `entry.` ID, and a small script submits in the background and swaps in a thank-you message. An Apps Script project attached to the form, "Peach Property Tax website form", runs on every submission and emails the response to the address set in its `NOTIFY_TO` variable, with reply-to set to the submitter. To change where responses go, edit that variable in the script. Both state pages post to the same Google Form. The County value carries the state as a suffix (for example `Harris, TX` or `Fulton, GA`), so the notification subject and the responses sheet show which state a request came from. If a question is ever added or renamed in the form, update the `entry.` names in georgia/index.html and texas/index.html to match (the IDs are visible in the form's pre-filled link).
 
 ## Local preview
 
